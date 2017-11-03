@@ -1,14 +1,28 @@
 import React from 'react';
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const style = {
-  margin: 12,
-};
+export default class CreateButton extends React.Component {
 
-const CreateButton = () => (
-  <div>
-    <RaisedButton label="Create" style={style} />
-  </div>
-);
+  constructor(props) {
+    super(props);
+    this.state = {open: false};
+  }
 
-export default SubmitButton;
+  handleToggle = () => this.setState({open: !this.state.open});
+
+  render() {
+    return (
+      <div>
+        <RaisedButton
+          label="Create"
+          onClick={this.handleToggle}
+        />
+        <Drawer width={800} openSecondary={true} open={this.state.open} >
+          <AppBar title="Enter the Question" />
+        </Drawer>
+      </div>
+    );
+  }
+}

@@ -5,7 +5,7 @@ import DomainBox from './DomainBox';
 import QuestionType from './QuestionType';
 import ComplexityBox from './ComplexityBox';
 import LevelBox from './LevelBox';
-import CreateButton from './SubmitButton';
+import CreateButton from './CreateButton';
 
 class App extends Component {
   constructor(props){
