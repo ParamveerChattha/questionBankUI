@@ -8,9 +8,7 @@ import LevelBox from './LevelBox';
 import CreateButton from './CreateButton';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    }
+
   render() {
     return (
       <div className="App">

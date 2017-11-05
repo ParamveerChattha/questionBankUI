@@ -1,28 +1,28 @@
 import React from 'react';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import QuestionLayout from './QuestionLayout';
+import QuestionType from './QuestionType';
 export default class CreateButton extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {open: false};
+    this.openLayout=this.openLayout.bind(this);
   }
-
-  handleToggle = () => this.setState({open: !this.state.open});
 
   render() {
     return (
       <div>
         <RaisedButton
           label="Create"
-          onClick={this.handleToggle}
+          onClick={this.openLayout}
         />
-        <Drawer width={800} openSecondary={true} open={this.state.open} >
-          <AppBar title="Enter the Question" />
-        </Drawer>
-      </div>
+        < QuestionLayout open={this.state.open} />
+        </div>
     );
+  }
+  
+  openLayout(){
+    this.setState({open:true});
   }
 }
