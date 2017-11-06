@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
-import ComplexityBox from './ComplexityBox';
-import CreateButton from './CreateButton';
-import DomainBox from './DomainBox';
-import LevelBox from './LevelBox';
-import NavBar from './NavBar';
-import QuestionType from './QuestionType';
-
+import QuestionProperties from './QuestionProperties';
 class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      <NavBar />
-      <DomainBox />
-      <ComplexityBox />
-      <LevelBox />
-      <QuestionType />
-      <CreateButton />
+      <div>
+        <QuestionProperties />
       </div>
 
     );

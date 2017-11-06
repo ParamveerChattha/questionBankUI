@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import LevelBox from './LevelBox';
-import CreateButton from './CreateButton';
+import QuestionLayout from './QuestionLayout';
 const styles = {
   customWidth: {
-    width: 200,
+    width: 200
   },
 };
-class QuestionProperties extends Component {
+class QuestionProperties extends React.Component {
 constructor(props){
   super(props);
-  this.state= {domainValue: 1,
+  this.state= {typeValue: 1,
+              levelValue: 1,
+              domainValue: 1,
               complexityValue: 1,
-              typeValue: 1,
-              levelValue: 1}
-  this.handleDomainChange = this.handleDomainChange.bind(this);
-  this.handleTypeChange = this.handleTypeChange.bind(this);
-  this.handleComplexityChange = this.handleComplexityChange.bind(this);
-  this.handleLevelChange = this.handleLevelChange.bind(this);
+              mcq: false,
+              tf : false}
+  this.openLayout=this.openLayout.bind(this);
   }
-handleDomainChange = (event, index, value) => this.setState({domainValue});
-handleTypeChange = (event, index, value) => this.setState({typeValue});
-handleComplexityChange = (event, index, value) => this.setState({complexityValue});
-handleLevelChange = (event, index, value) => this.setState({levelValue});
-
   render() {
     return (
       <div className="QuestionProperties">
@@ -40,33 +33,53 @@ handleLevelChange = (event, index, value) => this.setState({levelValue});
       <h3>
       <p align="left" >  Enter the Question Details Below </p>
       </h3>
-      <DropDownMenu domainValue={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
-        <MenuItem domainValue={1} primaryText="Java" />
-        <MenuItem domainValue={2} primaryText="Python" />
-        <MenuItem domainValue={3} primaryText="DB Conectivty requred" />
-      </DropDownMenu>
+        <DropDownMenu value={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
+          <MenuItem value={1} primaryText="Java" />
+          <MenuItem value={2} primaryText="Python" />
+          <MenuItem value={3} primaryText="DB Conectivty requred" />
+        </DropDownMenu>
+        <br />
+        <DropDownMenu value={this.state.typeValue} onChange={this.handleTypeChange}  style={styles.customWidth}>
+          <MenuItem value={1} primaryText="MCQ" />
+          <MenuItem value={2} primaryText="T/F" />
+
+        </DropDownMenu>
+        <br />
+        <DropDownMenu value={this.state.complexityValue} onChange={this.handleComplexityChange}  style={styles.customWidth}>
+          <MenuItem value={1} primaryText="Easy" />
+          <MenuItem value={2} primaryText="Medium" />
+          <MenuItem value={3} primaryText="Hard" />
+        </DropDownMenu>
+        <br />
+        <DropDownMenu value={this.state.levelValue} onChange={this.handleLevelChange}  style={styles.customWidth}>
+          <MenuItem value={1} primaryText="Level 1" />
+          <MenuItem value={2} primaryText="Level 2" />
+          <MenuItem value={3} primaryText="Level 3" />
+        </DropDownMenu>
       <br />
-      <DropDownMenu typeValue={this.state.typeValue} onChange={this.handleTypeChange}  style={styles.customWidth}>
-        <MenuItem typeValue={1} primaryText="MCQ" />
-        <MenuItem typeValue={2} primaryText="T/F" />
-      </DropDownMenu>
-      <br />
-      <DropDownMenu value={this.state.complexityValue} onChange={this.handleComplexityChange}  style={styles.customWidth}>
-        <MenuItem complexityValue={1} primaryText="Easy" />
-        <MenuItem complexityValue={2} primaryText="Medium" />
-        <MenuItem complexityValue={3} primaryText="Hard" />
-      </DropDownMenu>
-      <br />
-      <DropDownMenu value={this.state.levelValue} onChange={this.handleLevelChange}  style={styles.customWidth}>
-        <MenuItem levelValue={1} primaryText="Level 1" />
-        <MenuItem levelValue={2} primaryText="Level 2" />
-        <MenuItem levelValue={3} primaryText="Level 3" />
-      </DropDownMenu>
-      <br />
-       <CreateButton />
+        <RaisedButton
+          label="Create"
+          onClick={this.openLayout}
+        />
+        < QuestionLayout openmcq={(this.state.mcq)} opentf={(this.state.tf)} />
       </div>
     );
   }
-}
+  handleDomainChange = (event, index, domainValue) => this.setState({domainValue});
+  handleTypeChange = (event, index, typeValue) => this.setState({typeValue});
+  handleComplexityChange = (event, index, complexityValue) => this.setState({complexityValue});
+  handleLevelChange = (event, index, levelValue) => this.setState({levelValue});
 
+    openLayout(){
+      
+      if(this.state.typeValue === 1){
+        this.setState({mcq: true});
+        this.setState({tf: false});
+      }
+      else if(this.state.typeValue === 2){
+        this.setState({mcq: false});
+        this.setState({tf: true});
+      }
+      }
+}
 export default QuestionProperties;

@@ -11,22 +11,22 @@ export default class QuestionLayout extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {McqOpen: false,
-                  TFOpen: false}
-    this.toggleDrawer = this.toggleDrawer.bind(this);
 
+    this.state = {mcq: false,
+                  tf: false}
+    this.toggleDrawer = this.toggleDrawer.bind(this);
   }
   render() {
     return (
       <div>
-        <Drawer width={750} openSecondary={true} open={this.state.McqOpen} >
+        <Drawer width={750} openSecondary={true} open={this.state.mcq} >
           <AppBar title="MCQ Question" />
           < McqQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
             <RaisedButton label="Preview" secondary={true} style={style} />
             <RaisedButton label="Save" primary={true} style={style} />
         </Drawer>
-        <Drawer width={750} openSecondary={true} open={this.state.TFOpen} >
+        <Drawer width={750} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
           < TFQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
@@ -36,12 +36,13 @@ export default class QuestionLayout extends React.Component {
       </div>
     );
   }
+
   componentWillReceiveProps(newProps){
-    this.setState({McqOpen: newProps.open});
-    this.setState({TFOpen: newProps.open});
+    this.setState({mcq: newProps.mcq});
+    this.setState({tf: newProps.tf});
   }
   toggleDrawer(){
-    this.setState({McqOpen: false})
-    this.setState({TFOpen: false})
+    this.setState({mcq: false});
+    this.setState({tf: false});
   }
 }
