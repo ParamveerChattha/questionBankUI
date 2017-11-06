@@ -57,21 +57,20 @@ constructor(props){
           <MenuItem value={3} primaryText="Level 3" />
         </DropDownMenu>
       <br />
+      <div>
         <RaisedButton
           label="Create"
           onClick={this.openLayout}
         />
-        < QuestionLayout openmcq={(this.state.mcq)} opentf={(this.state.tf)} />
+        < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf} />
+        </div>
       </div>
     );
   }
-  handleDomainChange = (event, index, domainValue) => this.setState({domainValue});
-  handleTypeChange = (event, index, typeValue) => this.setState({typeValue});
-  handleComplexityChange = (event, index, complexityValue) => this.setState({complexityValue});
-  handleLevelChange = (event, index, levelValue) => this.setState({levelValue});
+
 
     openLayout(){
-      
+
       if(this.state.typeValue === 1){
         this.setState({mcq: true});
         this.setState({tf: false});

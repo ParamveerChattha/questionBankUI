@@ -23,23 +23,23 @@ export default class QuestionLayout extends React.Component {
           <AppBar title="MCQ Question" />
           < McqQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
-            <RaisedButton label="Preview" secondary={true} style={style} />
-            <RaisedButton label="Save" primary={true} style={style} />
+            <RaisedButton label="preview" secondary={true} style={style} />
+            <RaisedButton label="save" primary={true} style={style} />
         </Drawer>
         <Drawer width={750} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
           < TFQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
-            <RaisedButton label="Preview" secondary={true} style={style} />
-            <RaisedButton label="Save" primary={true} style={style} />
+            <RaisedButton label="preview" secondary={true} style={style} />
+            <RaisedButton label="save" primary={true} style={style} />
         </Drawer>
       </div>
     );
   }
 
   componentWillReceiveProps(newProps){
-    this.setState({mcq: newProps.mcq});
-    this.setState({tf: newProps.tf});
+    this.setState({mcq: newProps.openMcq});
+    this.setState({tf: newProps.openTf});
   }
   toggleDrawer(){
     this.setState({mcq: false});
