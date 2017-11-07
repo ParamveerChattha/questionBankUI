@@ -3,8 +3,8 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import McqQuestion from './McqQuestion';
-import PreviewTrueFalse from './PreviewTrueFalse';
 import TFQuestion from './TFQuestion';
+import PreviewTrueFalse from './PreviewTrueFalse';
 const style = {
   margin: 12,
 };
@@ -17,25 +17,27 @@ export default class QuestionLayout extends React.Component {
                   tf: false,
                   preview: false}
     this.toggleDrawer = this.toggleDrawer.bind(this);
+    this.openPreview = this.openPreview.bind(this);
   }
   render() {
     return (
       <div>
-        <Drawer width={750} openSecondary={true} open={this.state.mcq} >
+        <Drawer width={1439} openSecondary={true} open={this.state.mcq} >
           <AppBar title="MCQ Question" />
           < McqQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
             <RaisedButton label="preview" secondary={true} style={style} />
             <RaisedButton label="save" primary={true} style={style} />
         </Drawer>
-        <Drawer width={750} openSecondary={true} open={this.state.tf} >
+        <Drawer width={1439} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
           < TFQuestion />
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
-            <RaisedButton label="preview" secondary={true} style={style} onClick="this.openPreview"/>
+            <RaisedButton label="preview" secondary={true} style={style} onClick={this.openPreview}/>
             <RaisedButton label="save" primary={true} style={style} />
-
+            <PreviewTrueFalse open = {this.state.preview} />
         </Drawer>
+
       </div>
     );
   }
@@ -49,6 +51,6 @@ export default class QuestionLayout extends React.Component {
     this.setState({tf: false});
   }
   openPreview(){
-    <PreviewTrueFalse/>
+    this.setState({preview: true});
   }
 }

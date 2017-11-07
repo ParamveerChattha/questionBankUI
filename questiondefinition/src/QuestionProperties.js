@@ -13,8 +13,8 @@ const styles = {
   },
   cardWidth :{
     margin: "left",
-width: 689,
-border: "1px solid yellow",
+width: 688,
+border: "3px solid yellow",
 padding: 5
   },
   buttonAlign:{
@@ -48,33 +48,24 @@ constructor(props){
         <CardHeader
           title="Enter the Question Details Below"
         />
-
-        <CardText expandable={false}>
-
-<form>    <p> Question of Java </p>
         <DropDownMenu value={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
           <MenuItem value={1} primaryText="Java" />
           <MenuItem value={2} primaryText="Python" />
           <MenuItem value={3} primaryText="DB Conectivty requred" />
         </DropDownMenu>
-        from
         <DropDownMenu value={this.state.topicValue} onChange={this.handleTopicChange}  style={styles.customWidth}>
           <MenuItem value={1} primaryText="Strings" />
           <MenuItem value={2} primaryText="collections" />
         </DropDownMenu>
-                  of type
         <DropDownMenu value={this.state.typeValue} onChange={this.handleTypeChange}  style={styles.customWidth}>
           <MenuItem value={1} primaryText="MCQ" />
           <MenuItem value={2} primaryText="T/F" />
-
         </DropDownMenu>
-                  of complexity
         <DropDownMenu value={this.state.complexityValue} onChange={this.handleComplexityChange}  style={styles.customWidth}>
           <MenuItem value={1} primaryText="Easy" />
           <MenuItem value={2} primaryText="Medium" />
           <MenuItem value={3} primaryText="Hard" />
         </DropDownMenu>
-        with level
         <DropDownMenu value={this.state.levelValue} onChange={this.handleLevelChange}  style={styles.customWidth}>
           <MenuItem value={1} primaryText="1" />
           <MenuItem value={2} primaryText="2" />
@@ -88,23 +79,26 @@ constructor(props){
         />
         < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf} />
         </div>
-        </form>
-        </CardText>
       </Card>
       </div>
     );
   }
-
+  handleDomainChange = (event, index, domainValue) => this.setState({domainValue});
+  handleTopicChange = (event, index, topicValue) => this.setState({topicValue});
+  handleTypeChange = (event, index, typeValue) => this.setState({typeValue});
+  handleComplexityChange = (event, index, complexityValue) => this.setState({complexityValue});
+  handleLevelChange = (event, index, levelValue) => this.setState({levelValue});
 
     openLayout(){
-
       if(this.state.typeValue === 1){
         this.setState({mcq: true});
-        this.setState({tf: false});
+        this.setState({tf: false}); 
+
       }
       else if(this.state.typeValue === 2){
         this.setState({mcq: false});
         this.setState({tf: true});
+
       }
       }
 }
