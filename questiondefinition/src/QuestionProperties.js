@@ -32,10 +32,10 @@ constructor(props){
                 complexityValue: 1,
                 topicValue: 1,
                 mcq: false,
-                tf : false,
-                display: "this is default"
+                tf : false
               }
   this.openLayout=this.openLayout.bind(this);
+  this.closeLayout = this.closeLayout.bind(this);
   }
   render() {
     return (
@@ -80,8 +80,7 @@ constructor(props){
           onClick = {this.openLayout}
           style = {styles.buttonAlign}
         />
-        {this.state.display}
-          < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf}  />
+          < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf} setDefault = {this.closeLayout}  />
         </div>
       </Card>
       </div>
@@ -102,13 +101,11 @@ constructor(props){
         this.setState({mcq: false});
         this.setState({tf: true});
       }}
-      componentDidMount() {
-      setTimeout(function() { //Start the timer
-          this.setState({mcq: false}) //After 1 second, set render to true
-          this.setState({tf: false})
-          this.setState({display: "set with DidMount"})
-      }.bind(this), 90000)
+      closeLayout(){
+        this.setState({mcq: false});
+        this.setState({tf: false});
       }
+
 
 }
 export default QuestionProperties;

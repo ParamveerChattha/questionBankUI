@@ -17,8 +17,8 @@ export default class QuestionLayout extends React.Component {
                   tf: false,
                   preview: false,
                   status: false}
-    this.toggleDrawer = this.toggleDrawer.bind(this);
     this.openPreview = this.openPreview.bind(this);
+    this.closePreview =  this.closePreview.bind(this);
   }
   render() {
     return (
@@ -26,17 +26,17 @@ export default class QuestionLayout extends React.Component {
         <Drawer width={1439} openSecondary={true} open={this.state.mcq} >
           <AppBar title="MCQ Question" />
           < McqQuestion />
-            <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
+            <RaisedButton label="cancel" default={true} style={style} onClick = {this.props.setDefault }/>
             <RaisedButton label="preview" secondary={true} style={style} />
             <RaisedButton label="save" primary={true} style={style} />
         </Drawer>
         <Drawer width={1439} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
           < TFQuestion />
-            <RaisedButton label="cancel" default={true} style={style} onClick = {this.toggleDrawer }/>
+            <RaisedButton label="cancel" default={true} style={style} onClick = {this.props.setDefault }/>
             <RaisedButton label="preview" secondary={true} style={style} onClick={this.openPreview}/>
             <RaisedButton label="save" primary={true} style={style} />
-            <PreviewTrueFalse open = {this.state.preview} />
+            <PreviewTrueFalse open = {this.state.preview} setDefault = {this.closePreview} />
         </Drawer>
 
       </div>
@@ -47,11 +47,10 @@ export default class QuestionLayout extends React.Component {
     this.setState({mcq: newProps.openMcq});
     this.setState({tf: newProps.openTf});
   }
-  toggleDrawer(){
-    this.setState({mcq: false});
-    this.setState({tf: false});
-  }
   openPreview(){
     this.setState({preview: true});
+  }
+  closePreview(){
+    this.setState({preview: false});
   }
 }

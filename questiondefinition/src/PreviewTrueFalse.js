@@ -3,6 +3,7 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import TFQuestion from './TFQuestion';
 
 class PreviewTrueFalse extends React.Component{
   constructor(props){
@@ -25,7 +26,7 @@ class PreviewTrueFalse extends React.Component{
       </CardText>
       <RaisedButton
         label="close"
-        onClick={this.toggleDrawer}
+        onClick={this.props.setDefault}
       />
     </Card>
     </Drawer>
