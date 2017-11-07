@@ -15,7 +15,8 @@ export default class QuestionLayout extends React.Component {
 
     this.state = {mcq: false,
                   tf: false,
-                  preview: false}
+                  preview: false,
+                  status: false}
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.openPreview = this.openPreview.bind(this);
   }

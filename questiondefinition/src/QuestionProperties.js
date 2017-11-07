@@ -25,13 +25,16 @@ padding: 5
 class QuestionProperties extends React.Component {
 constructor(props){
   super(props);
-  this.state= {typeValue: 1,
-              levelValue: 1,
-              domainValue: 1,
-              complexityValue: 1,
-              topicValue: 1,
-              mcq: false,
-              tf : false}
+  this.state= {
+                typeValue: 1,
+                levelValue: 1,
+                domainValue: 1,
+                complexityValue: 1,
+                topicValue: 1,
+                mcq: false,
+                tf : false,
+                display: "this is default"
+              }
   this.openLayout=this.openLayout.bind(this);
   }
   render() {
@@ -77,7 +80,8 @@ constructor(props){
           onClick = {this.openLayout}
           style = {styles.buttonAlign}
         />
-        < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf} />
+        {this.state.display}
+          < QuestionLayout openMcq={this.state.mcq} openTf={this.state.tf}  />
         </div>
       </Card>
       </div>
@@ -92,14 +96,19 @@ constructor(props){
     openLayout(){
       if(this.state.typeValue === 1){
         this.setState({mcq: true});
-        this.setState({tf: false}); 
-
+        this.setState({tf: false});
       }
       else if(this.state.typeValue === 2){
         this.setState({mcq: false});
         this.setState({tf: true});
+      }}
+      componentDidMount() {
+      setTimeout(function() { //Start the timer
+          this.setState({mcq: false}) //After 1 second, set render to true
+          this.setState({tf: false})
+          this.setState({display: "set with DidMount"})
+      }.bind(this), 90000)
+      }
 
-      }
-      }
 }
 export default QuestionProperties;
